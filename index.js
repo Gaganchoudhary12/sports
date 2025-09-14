@@ -81,7 +81,7 @@ io.engine.on('connection_error', (err) => {
     console.log('  Context:', err.context);
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 httpServer.listen(PORT, () => {
     console.log(`🏏 Cricket Commentary Server Started`);
