@@ -81,13 +81,12 @@ io.engine.on('connection_error', (err) => {
     console.log('  Context:', err.context);
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 httpServer.listen(PORT, () => {
     console.log(`🏏 Cricket Commentary Server Started`);
     console.log(`🌐 Listening on port ${PORT}`);
 });
-
 const indiaFirst10OversEvents = [
     {
         type: 'MATCH_STATUS',
@@ -685,21 +684,21 @@ function startMockEvents(socket, matchId) {
             if (currentEvent.type === 'MATCH_STATUS') {
                 // Match status events get longer pauses
                 if (currentEvent.payload.status === 'Match Started') delay = 3000;
-                else if (currentEvent.payload.status === 'Toss Update') delay = 2500;
-                else if (currentEvent.payload.status === 'Wicket Fall') delay = 4000; // Longer for wickets
-                else if (currentEvent.payload.status === 'Powerplay End') delay = 3500;
-                else delay = 2500;
+                else if (currentEvent.payload.status === 'Toss Update') delay = 4000;
+                else if (currentEvent.payload.status === 'Wicket Fall') delay = 6000; // Longer for wickets
+                else if (currentEvent.payload.status === 'Powerplay End') delay = 4000;
+                else delay = 4000;
             } else if (currentEvent.type === 'WICKET') {
                 // Wickets get dramatic pause
-                delay = 3500;
+                delay = 6000;
             } else if (currentEvent.type === 'BOUNDARY') {
                 // Boundaries get slightly longer pause for excitement
-                if (currentEvent.payload.runs === 6) delay = 3000; // Sixes get more time
-                else delay = 2500; // Fours get medium time
+                if (currentEvent.payload.runs === 6) delay = 4000; // Sixes get more time
+                else delay = 4000; // Fours get medium time
             } else if (currentEvent.type === 'BALL') {
                 // Regular balls vary based on runs
-                if (currentEvent.payload.runs === 0) delay = 1800; // Dot balls are quicker
-                else if (currentEvent.payload.runs >= 2) delay = 2200; // Multi-run balls get more time
+                if (currentEvent.payload.runs === 0) delay = 4000; // Dot balls are quicker
+                else if (currentEvent.payload.runs >= 2) delay = 4000; // Multi-run balls get more time
                 else delay = 2000; // Singles are normal
             }
 
