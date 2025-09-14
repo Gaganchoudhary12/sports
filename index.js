@@ -83,9 +83,9 @@ io.engine.on('connection_error', (err) => {
 
 const PORT = process.env.PORT || 3001;
 
-httpServer.listen(PORT, '0.0.0.0', () => {
-    console.log('🏏 Cricket Commentary Server Started');
-    console.log(`🌐 External access: http://10.254.196.39:${PORT}`);
+httpServer.listen(PORT, () => {
+    console.log(`🏏 Cricket Commentary Server Started`);
+    console.log(`🌐 Listening on port ${PORT}`);
 });
 
 const indiaFirst10OversEvents = [
